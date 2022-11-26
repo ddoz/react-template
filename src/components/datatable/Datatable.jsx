@@ -1,6 +1,7 @@
 import './datatable.scss'
 import { DataGrid } from '@mui/x-data-grid';
 import {userColumns, userRows} from '../../datatablesource.js';
+import { Link } from 'react-router-dom';
 
 const Datatable = () => {
 
@@ -12,7 +13,9 @@ const Datatable = () => {
             renderCell: (params)=> {
                 return (
                     <div className="cellAction">
-                        <div className="viewButton">View</div>
+                        <Link to="/users/1" style={{textDecoration:"none"}}>
+                            <div className="viewButton">View</div>
+                        </Link>
                         <div className="deleteButton">Delete</div>
                     </div>
                 );
@@ -22,7 +25,12 @@ const Datatable = () => {
 
   return (
     <div className='datatable'>
+        <div className="datatableTitle">
+            Add New User
+            <Link to="users/new" style={{textDecoration:"none"}} className="link">Add New</Link>
+        </div>
         <DataGrid
+            className='datagrid'
             rows={userRows}
             columns={userColumns.concat(actionColumn)}
             pageSize={9}
